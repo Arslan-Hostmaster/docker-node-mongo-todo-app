@@ -1,6 +1,6 @@
 version: '3'
 services:
-  node:
+  web:
     image: "node-todo-app"
     build: .
     command: "pm2 start server.js"
