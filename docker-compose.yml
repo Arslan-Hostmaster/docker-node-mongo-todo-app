@@ -2,9 +2,7 @@ version: '3'
 services:
   web:
     image: "todoapp:Dockerfile"
-    build: .
     command: "pm2 start server.js"
-    command: "pm2 logs"
     ports:
       - "5000:5000"
     depends_on:
