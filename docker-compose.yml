@@ -1,11 +1,9 @@
 version: '3'
 services:
   web:
-    image: "node"
+    image: "node-todo-app"
     build: .
-    command: "npm install"
-    command: "npm install pm2 -g"
-    command: "pm2 start server.js"
+    command: "node server.js"
     ports:
       - "5000:5000"
     depends_on:
