@@ -1,7 +1,7 @@
 version: '3'
 services:
-  web:
-    image: "node-todo-app"
+  node:
+    image: "node"
     build: .
     command: "node server.js"
     ports:
