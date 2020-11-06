@@ -1,7 +1,7 @@
 version: '3'
 services:
   node:
-    image: "node"
+    image: "node-todo-app"
     build: .
     command: "pm2 start server.js"
     ports:
