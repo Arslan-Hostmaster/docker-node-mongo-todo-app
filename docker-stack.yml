@@ -2,22 +2,26 @@
 - hosts: all
   become: true
   tasks:
-  - name: remove if we have old docker stack
+  - name: Remove if we have old docker stack
     command: docker stack rm node-todo-app
     ignore_errors: yes
 
-  - name: remove current docker image
-    command: docker rmi todoapp:latest
+  - name: Remove current docker image
+    command: docker rmi -f todoapp:latest
     ignore_errors: yes
     register: result
     failed_when:
       - result.rc == 0
       - '"docker" not in result.stdout'
   
-  - name: Go to the app folder and building docker image
+  - name: Building docker image
     command: chdir=/home/ansadmin/docker-node-mongo-todo-app docker build -t todoapp:latest .
     ignore_errors: yes
 
-  - name: creating docker image
+  - name: Deploying docker stack
     command: chdir=/home/ansadmin/docker-node-mongo-todo-app docker stack deploy --compose-file docker-compose.yml node-todo-app
-    
+    ignore_errors: yes
+    register: result
+    failed_when:
+      - result.rc == 0
+      - '"docker" not in result.stdout'
