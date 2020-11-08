@@ -17,8 +17,6 @@
 
   - name: building docker image
     command: docker build -t todoapp:Dockerfile .
-    args:
-      chdir: /opt/docker
 
   - name: creating docker image
     command: docker stack deploy --compose-file docker-compose.yml node-todo-app
