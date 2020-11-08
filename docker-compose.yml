@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: "todoapp:Dockerfile"
+    image: "todoapp:latest"
     command: "node server.js"
     ports:
       - "5000:5000"
