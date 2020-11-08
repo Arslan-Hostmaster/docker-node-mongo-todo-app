@@ -9,11 +9,10 @@
   - name: remove current docker image
     command: docker rmi todoapp:Dockerfile
     ignore_errors: yes
-#    register: result
-#    failed_when:
-#      - result.rc == 0
-#      - '"docker" not in result.stdout'
-
+    register: result
+    failed_when:
+      - result.rc == 0
+      - '"docker" not in result.stdout'
 
   - name: building docker image
     command: docker build -t todoapp:Dockerfile .
