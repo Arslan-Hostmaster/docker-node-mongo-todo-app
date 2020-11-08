@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Updating current docker image
+    command: docker service update --image todoapp:latest node-todo-app_web
+    #ignore_errors: yes
+
+
