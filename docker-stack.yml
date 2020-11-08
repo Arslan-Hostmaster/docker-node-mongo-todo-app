@@ -13,12 +13,11 @@
     failed_when:
       - result.rc == 0
       - '"docker" not in result.stdout'
-
-  - name: building docker image
-    command: cd docker-node-mongo-todo-app
-    command: docker build -t todoapp:Dockerfile .
+  
+  - name: Go to the app folder and building docker image
+    command: chdir=/home/ansadmin/docker-node-mongo-todo-app docker build -t todoapp:Dockerfile .
     ignore_errors: yes
 
   - name: creating docker image
-    command: docker stack deploy --compose-file docker-compose.yml node-todo-app
+    command: chdir=/home/ansadmin/docker-node-mongo-todo-app docker stack deploy --compose-file docker-compose.yml node-todo-app
     
