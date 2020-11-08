@@ -20,8 +20,4 @@
 
   - name: Deploying docker stack
     command: chdir=/home/ansadmin/docker-node-mongo-todo-app docker stack deploy --compose-file docker-compose.yml node-todo-app
-    ignore_errors: yes
-    register: result
-    failed_when:
-      - result.rc == 0
-      - '"docker" not in result.stdout'
+
