@@ -15,7 +15,9 @@
       - '"docker" not in result.stdout'
 
   - name: building docker image
+    command: cd docker-node-mongo-todo-app
     command: docker build -t todoapp:Dockerfile .
+    ignore_errors: yes
 
   - name: creating docker image
     command: docker stack deploy --compose-file docker-compose.yml node-todo-app
