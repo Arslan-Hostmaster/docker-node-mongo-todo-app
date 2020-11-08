@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: remove if we have old docker stack
+    command: docker stack rm node-todo-app
+    ignore_errors: yes
+
+  - name: remove current docker image
+    command: docker rmi todoapp
+    ignore_errors: yes
+#    register: result
+#    failed_when:
+#      - result.rc == 0
+#      - '"docker" not in result.stdout'
+
+
+  - name: building docker image
+    command: docker build -t todoapp:Dockerfile .
+    args:
+      chdir: /opt/docker
+
+  - name: creating docker image
+    command: docker stack deploy --compose-file docker-compose.yml node-todo-app
+    
