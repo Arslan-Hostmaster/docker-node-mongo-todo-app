@@ -1,4 +1,4 @@
-FROM imarslan/todoapp:latest
+FROM node
 
 WORKDIR /usr/src/app
 
